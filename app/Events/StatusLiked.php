@@ -24,8 +24,9 @@ class StatusLiked implements ShouldBroadcast
      */
     public function __construct($username)
     {
+
       $this->username = $username;
-      $this->message = "{$username} liked your status";
+      $this->message = "지금막 {$username}님이 투표 하셨습니다.";
         //
     }
     /**

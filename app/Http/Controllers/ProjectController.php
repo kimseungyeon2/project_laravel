@@ -7,8 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use App\content_vote;
 use App\Vote_user;
 
-use Mail;
 use Event;
+use App\Events\StatusLiked;
+use Mail;
 use App\Events\MailSend;
 
 class ProjectController extends Controller
@@ -32,6 +33,7 @@ class ProjectController extends Controller
      if($vote_user){
        return "이미 투표 하셨습니다.";
      }else{
+       event(new StatusLiked(Auth::user()->name));//pusher event 
        Vote_user::create([
          'user_id'=>Auth::id(),
          'content_vote_num'=>$vote_num,
@@ -62,5 +64,4 @@ class ProjectController extends Controller
     echo "event: ping\n";
     flush();
   }//chart_html server sent event(SSE) the server
-
 }

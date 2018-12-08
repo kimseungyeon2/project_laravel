@@ -43,26 +43,7 @@ Route::get('/server/{data}','ProjectController@server')->name('server');//chart 
 Route::get('/chart/{content_num}/{vote_num}','ProjectController@chart')->name('chart');//chart data update
 //ck_fileUpload
 Route::post('/ckUpload','ProjectController@ck_fileUpload')->name('ckUpload');//ck_edit fileUpload
+//vote people check
+Route::get('pusher/{name}','projectController@pusher')->name('pusher');
 //LocalizationController
 Route::get('localization/{locale}','LocalizationController@index')->name('lcaliza');
-
-Route::get('test',function(){
-  event(new App\Events\StatusLiked('Someone'));
-  return "Event has been sent!";
-});
-
-
-
-
-
-
-
-
-
-
-// // //mail
-// // Route::get('/mail_send/{mail}','ProjectController@send');
-// //
-// Route::get('/',function(){
-//   return view('welcome');
-// });

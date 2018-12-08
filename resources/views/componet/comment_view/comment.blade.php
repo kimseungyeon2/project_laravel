@@ -27,7 +27,7 @@
 <div class="fixed-bottom">
 @if(Auth::check())
 <button class="btn btn-outline-primary" onclick="comment_Form('/comment/create',{{$content->id}})" data-toggle="modal" data-target="#exampleModal">
-  <i class="fa fa-stack-exchange" style="font-size:300%" ></i>
+  <i class="fa fa-comment-o" style="font-size:300%" ></i>
 </button>
 @endif
 </div>

@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
       $page = $request->page;
-      $contents = Content::paginate(1);
+      $contents = Content::paginate(3);
       return view('layouts.main_content_page')->with([
         'contents'=>$contents,
         'page'=>$page,
@@ -35,7 +35,7 @@ class HomeController extends Controller
     }//main index 전체글보기
     public function my_index(Request $request){
       $page = $request->page;
-      $contents = content::where('user_id',Auth::id())->paginate(5);
+      $contents = content::where('user_id',Auth::id())->paginate(3);
       return view('layouts.main_content_page')->with([
         'contents'=>$contents,
         'page'=>$page,
@@ -97,7 +97,7 @@ class HomeController extends Controller
         ]);
       }else{
         //page seach
-        $result = Content::where('content_title','LIKE',"%$search%")->orwhere('content','LIKE',"%$search%")->paginate(1);
+        $result = Content::where('content_title','LIKE',"%$search%")->orwhere('content','LIKE',"%$search%")->paginate(3);
         return view('layouts.main_content_page')->with([
           'contents'=>$result,
           'page'=>$page,
