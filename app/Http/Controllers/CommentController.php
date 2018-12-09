@@ -89,10 +89,16 @@ class CommentController extends Controller
      */
     public function update($id,Request $request)
     {
-       Comment::find($id)->update([
-         'content_comment'=>$request->content
-       ]);
-       $comments = Comment::where('content_id',$request->content_id)->with('user')->get();
+      $comment_user = Comment::where('id',$id)->first()->user_id;//본인 댓글만 수정
+      if($comment_user == Auth::id()){
+        Comment::find($id)->update([
+          'content_comment'=>$request->content
+        ]);
+        $comments = Comment::where('content_id',$request->content_id)->with('user')->get();
+      }
+      else{
+
+      }
        $content = Content::where('id',$request->content_id)->first();
        return view('componet.comment_view.comment')->with([
          'comments'=>$comments,
@@ -108,8 +114,14 @@ class CommentController extends Controller
      */
     public function destroy($id,Request $request)
     {
-      Comment::find($id)->delete();
-      $comments = Comment::where('content_id',$request->content_id)->with('user')->get();
+      $comment_user = Comment::where('id',$id)->first()->user_id;//본인 댓글만 삭제
+      if($comment_user == Auth::id()){
+        Comment::find($id)->delete();
+        $comments = Comment::where('content_id',$request->content_id)->with('user')->get();
+      }
+      else{
+
+      }
       $content = Content::where('id',$request->content_id)->first();
       return view('componet.comment_view.comment')->with([
         'comments'=>$comments,

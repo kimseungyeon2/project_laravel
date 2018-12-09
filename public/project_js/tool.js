@@ -124,7 +124,7 @@ function comment_ajax(url,type,content_id,content){
         }
       },
       error:function(){
-        alert('오류');
+        alert('실패');
       }
   });
 }
