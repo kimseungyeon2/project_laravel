@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-  insertPage
+  detailpage
 @endsection
 
 @section('header')

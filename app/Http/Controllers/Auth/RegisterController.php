@@ -7,7 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
     /*
@@ -37,7 +38,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest')->only('create');
     }
 
     /**
@@ -63,10 +64,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-      //Register_image 저장
+      //Register datas
       $file_name = $data['my_image']->getClientOriginalName();
-      $data['my_image']->storeAs('public',$file_name);
-      $addrs = $data['addrs0'].'-'.$data['addrs1'].'-'.$data['addrs2'];
+      $data['my_image']->storeAs('public',$file_name);//image
+      $addrs = $data['addrs0'].'-'.$data['addrs1'].'-'.$data['addrs2'];//addrs
       return User::create([
         'name' => $data['name'],
         'email' => $data['email'],
@@ -75,4 +76,47 @@ class RegisterController extends Controller
         'addrs' => $addrs
       ]);
     }
+    //register password check
+    public function check_log(Request $request){
+      if(password_verify($request->password, Auth::User()->password)){
+        if($request->log_kind == 'update'){
+          $user = User::where('id',Auth::id())->first();
+          $addrs = explode("-",$user->addrs);
+          return view('layouts.register_update')->with([
+            'user'=>$user,
+            'addrs'=>$addrs,
+            'password'=>$request->password,
+          ]);
+        }
+        else if($request->log_kind == 'delete'){
+          return view('layouts.register_delete');
+        }
+        else{
+          back();
+        }
+      }else{
+        return back();
+      }
+    }
+    //register update
+    public function update(Request $request, $id){
+      //Register datas
+      $file_name = $request->file('my_image')->getClientOriginalName();
+      $request->file('my_image')->storeAs('public',$file_name);//image
+
+      $addrs = $request->addrs0.'-'.$request->addrs1.'-'.$request->addrs2;//addrs
+      User::where('id',$id)->update([
+        'name' => $request->name,
+        'email' => Auth::user()->email,
+        'password' => Hash::make($request->password),
+        'my_image' => $file_name,
+        'addrs' => $addrs
+      ]);
+      return redirect('myLogStatus');
+    }
+    //register delete
+    public function destroy($id){
+      User::where('id',$id)->delete();
+      return redirect('/');
+    }//delete
 }

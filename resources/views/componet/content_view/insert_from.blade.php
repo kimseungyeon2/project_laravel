@@ -1,3 +1,12 @@
+@if ($errors->has('content_kinds'))
+<script type="text/javascript">
+  alert('항목을 2개이상 만들어 주세요.');
+</script>
+@elseif($errors->has('content'))
+<script type="text/javascript">
+  alert('글을 작성해 주세요.');
+</script>
+@endif
 <section id="buy-tickets" class="section-with-bg wow fadeInUp">
   <div class="container">
     <div class="row">
@@ -23,7 +32,7 @@
                   </div>
                   <div class="">
                     <label for="content_url"><i class="fab fa-buysellads"></i>사이트 주소</label><br>
-                    <input type="text" name="content_url" value="" class="form-control" placeholder="url 주소를 적어주세요">
+                    <input type="text" name="content_url" value="" class="form-control" placeholder="url 주소를 적어주세요" required>
                   </div>
                   <div class="">
                     <label for=""><i class="far fa-comments"></i>조사항목</label><br>

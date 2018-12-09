@@ -29,6 +29,12 @@ Route::get('/reLogin', function () {
 Route::get('/reRegister', function () {
   return view('layouts.redirectRegister');
 })->name('reRegister');
+//password check
+Route::post('logCheck','Auth\RegisterController@check_log')->name('logCheck');
+//log-delete
+Route::delete('logDelete\{id}','Auth\RegisterController@destroy')->name('logDelete');
+//log-update
+Route::PATCH('logUpdate\{id}','Auth\RegisterController@update')->name('logUpdate');
 //CRUD-content
 Route::resource('/content','ContentController');
 //CRUD-comment

@@ -1,13 +1,11 @@
-@if($errors->has('content_kinds'))
-  <script type="text/javascript">
-    alert('항목을 넣어주세요');
-  </script>
+@if ($errors->has('content_kinds'))
+<script type="text/javascript">
+  alert('항목을 2개이상 만들어 주세요.');
+</script>
 @elseif($errors->has('content'))
 <script type="text/javascript">
   alert('글을 작성해 주세요.');
 </script>
-@else
-
 @endif
 <section id="buy-tickets" class="section-with-bg wow fadeInUp">
   <div class="container">

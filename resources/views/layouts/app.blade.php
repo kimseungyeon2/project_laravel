@@ -62,12 +62,12 @@
       </div>
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li><i class="fa fa-bell" style="color:white;"></i><a id="num" href="#"></a></li>
           <li><a href="#" data-toggle="modal" data-target="#myModal">검색</a></li>
           @if(!Auth::check())
           <li><a href="#" onclick="log_modal('{{route('login')}}')" data-toggle="modal" data-target="#exampleModal">로그인</a></li>
           <li><a href="#" onclick="log_modal('{{route('register')}}')" data-toggle="modal" data-target="#exampleModal">회원가입</a></li>
           @else
+          <li><i class="fa fa-bell" style="color:white;"></i><a id="num" href="#">-</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
               <i class="fa fa-user-circle-o"></i>{{Auth::user()->name}}님 의정보

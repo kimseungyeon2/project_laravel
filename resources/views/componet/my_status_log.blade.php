@@ -20,8 +20,8 @@
                   <br>
                   <span>addrs:{{$my_user->addrs}}</span>
                   <hr>
-                  <button class="btn btn-primary" type="button" name="button" onclick="">회원탈퇴</button>
-                  <button class="btn btn-danger" type="button" name="button" onclick="'">회원정보수정</button>
+                  <a class="btn btn-danger" href="" type="button" data-toggle="modal" data-target="#mylogcheck_delete">회원탈퇴</a>
+                  <a class="btn btn-primary" href="" type="button" data-toggle="modal" data-target="#mylogcheck_update">회원수정</a>
                 </div>
               </div>
             </div>

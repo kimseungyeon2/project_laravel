@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-  mainPage
+  myStatus
 @endsection
 
 @section('nav')
