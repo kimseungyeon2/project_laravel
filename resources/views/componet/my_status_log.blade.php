@@ -10,6 +10,7 @@
             <h6 class="card-price text-center">myLogStatus</h6>
             <div class="">
               <div class="container">
+                <h5 class="text-center">google 유저는 logout 후 비밀번호찾기를 통해 비밀번호 변경후 이용해주세요.</h5>
                 <div class="text-center">
                   <img class="text-center" src="/storage/{{$my_user->my_image}}" alt="">
                   <hr>

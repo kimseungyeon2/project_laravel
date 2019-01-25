@@ -72,7 +72,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
               <i class="fa fa-user-circle-o"></i>{{Auth::user()->name}}님 의정보
             </a>
-            <div class="dropdown-menu">
+            <div class="dropdown-menu" style="background-color:black;">
               <a class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 Logout
               </a>

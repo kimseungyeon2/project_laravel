@@ -38,7 +38,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->only('create');
+        //$this->middleware('guest')->only('create');
     }
 
     /**
@@ -78,6 +78,8 @@ class RegisterController extends Controller
     }
     //register password check
     public function check_log(Request $request){
+      // \Log::info('pw = '.$request->password);
+      // \Log::info('pw2 = '. Auth::User()->password);
       if(password_verify($request->password, Auth::User()->password)){
         if($request->log_kind == 'update'){
           $user = User::where('id',Auth::id())->first();
@@ -92,7 +94,7 @@ class RegisterController extends Controller
           return view('layouts.register_delete');
         }
         else{
-          back();
+         return back();
         }
       }else{
         return back();

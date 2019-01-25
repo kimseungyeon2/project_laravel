@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Socialite;
@@ -27,9 +27,9 @@ class AuthController extends Controller
           $user = new User;
           $user->name = $googleUser->name;
           $user->email = $googleUser->email;
-          $user->password = md5(rand(1,10000));
-          $user->my_image = 'User.png';
-          $user->addrs = "google";
+          $user->password = md5(rand(1,10000)); //md5(rand(1,10000));
+          $user->my_image = 'User.jpg';
+          $user->addrs = "google-google-google";
           $user->save();
           Auth::loginUsingId($user->id);
       }
